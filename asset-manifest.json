@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/HOUSE-HOTEL/static/css/main.0491e98c.css",
+    "main.js": "/HOUSE-HOTEL/static/js/main.716c4d6d.js",
+    "static/js/787.28cb0dcd.chunk.js": "/HOUSE-HOTEL/static/js/787.28cb0dcd.chunk.js",
+    "static/media/photo-1551516594-56cb78394645.png": "/HOUSE-HOTEL/static/media/photo-1551516594-56cb78394645.2d396ebb42a62d824a9c.png",
+    "static/media/photo-1507149833265-60c372daea22.png": "/HOUSE-HOTEL/static/media/photo-1507149833265-60c372daea22.0efa79b6bf45bc795d63.png",
+    "static/media/photo-1523217582562-09d0def993a6@2x.png": "/HOUSE-HOTEL/static/media/photo-1523217582562-09d0def993a6@2x.e186f2e767f77d1fcee6.png",
+    "static/media/photo-1549490148-d7304e934d25@2x.png": "/HOUSE-HOTEL/static/media/photo-1549490148-d7304e934d25@2x.9ed1a11adf9d7c4ea502.png",
+    "static/media/houseIcon.svg": "/HOUSE-HOTEL/static/media/houseIcon.a409488e3a3dd6291a89e7d4890af957.svg",
+    "static/media/false.svg": "/HOUSE-HOTEL/static/media/false.f3016e0c3b38abf7feb98a93de010cb0.svg",
+    "static/media/pet.svg": "/HOUSE-HOTEL/static/media/pet.b1858af7ab6047655aee9b8058e9067e.svg",
+    "static/media/tel.svg": "/HOUSE-HOTEL/static/media/tel.2cc7c0b462ec39b274a42b6b0758ec48.svg",
+    "static/media/success.svg": "/HOUSE-HOTEL/static/media/success.ca751ccfa69d4a71da8939a36abe5a2b.svg",
+    "static/media/bar.svg": "/HOUSE-HOTEL/static/media/bar.94c10479fbc21016c4f3b0c39bef6327.svg",
+    "static/media/eat.svg": "/HOUSE-HOTEL/static/media/eat.66db71506a36db7079e94fa47ce1a2cb.svg",
+    "static/media/roomservice.svg": "/HOUSE-HOTEL/static/media/roomservice.54d3597946dead30c0d0a1fdf560deba.svg",
+    "static/media/sofa.svg": "/HOUSE-HOTEL/static/media/sofa.e712e2b0548dca390f6c11e738d1c58e.svg",
+    "static/media/view.svg": "/HOUSE-HOTEL/static/media/view.74776dea09fd3b31f18f8e1c9b7aeaa2.svg",
+    "static/media/game.svg": "/HOUSE-HOTEL/static/media/game.d90e3a5fb45486e46d455eb9ffee8dd3.svg",
+    "static/media/nosmoking.svg": "/HOUSE-HOTEL/static/media/nosmoking.c50e0a0799054423eea529474928057d.svg",
+    "static/media/aircondition.svg": "/HOUSE-HOTEL/static/media/aircondition.30f71a4994af13550ea29b28cb5045b0.svg",
+    "static/media/ref.svg": "/HOUSE-HOTEL/static/media/ref.f5488fa2d085abee58ea8184616b2739.svg",
+    "static/media/wifi.svg": "/HOUSE-HOTEL/static/media/wifi.898a8b4f871ca3f01a55ea26a35a4bab.svg",
+    "index.html": "/HOUSE-HOTEL/index.html",
+    "static/media/icons8-close.svg": "/HOUSE-HOTEL/static/media/icons8-close.f2dff60a2917bfd6de14b963dadc13a7.svg",
+    "static/media/close.svg": "/HOUSE-HOTEL/static/media/close.b63ec7f270f10614af9117e812ea1552.svg",
+    "static/media/no.svg": "/HOUSE-HOTEL/static/media/no.637da60078b2955ab83ac86216dd5af0.svg",
+    "static/media/yes.svg": "/HOUSE-HOTEL/static/media/yes.07536bc203e4a99996251cbebc868253.svg",
+    "main.0491e98c.css.map": "/HOUSE-HOTEL/static/css/main.0491e98c.css.map",
+    "main.716c4d6d.js.map": "/HOUSE-HOTEL/static/js/main.716c4d6d.js.map",
+    "787.28cb0dcd.chunk.js.map": "/HOUSE-HOTEL/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0491e98c.css",
+    "static/js/main.716c4d6d.js"
+  ]
+}
