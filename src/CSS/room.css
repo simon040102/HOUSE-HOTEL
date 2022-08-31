@@ -1,0 +1,73 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper2 {
+  max-width: 65vh;
+  height: 100vh;
+}
+
+.swiper-slide2 {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper2 .swiper-pagination .swiper-pagination-bullet-active-next,
+.swiper2 .swiper-pagination .swiper-pagination-bullet-active-main,
+.swiper2 .swiper-pagination .swiper-pagination-bullet-active-next-next,
+.swiper2 .swiper-pagination .swiper-pagination-bullet-active-prev,
+.swiper2 .swiper-pagination .swiper-pagination-bullet-active-prev-prev,
+.swiper2 .swiper-pagination .swiper-pagination-bullet {
+  border: 3px#000000 solid !important;
+  padding: 8px !important;
+  background-color: #949c7c !important;
+  color: #949C7C;
+}
+.swiper2 .swiper-pagination {
+  position: absolute !important  ;
+  left: 200px !important;
+  bottom: 200px !important;
+  transform: none !important;
+}
+.swiper-pagination,
+.swiper-pagination-bullets-dynamic,
+.swiper-pagination-bullets,
+.swiper-pagination-horizontal {
+    z-index: 100 !important;
+}
