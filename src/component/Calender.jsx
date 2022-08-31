@@ -31,12 +31,12 @@ const Calender = (props) => {
         let endDay = new Date(item.date[1]);
         obj.start = subDays(startDay, 1);
         obj.end = addDays(endDay, 0);
-        console.log(obj);
+
         setChosenDays((preDays) => [...preDays, obj]);
       });
     } catch (error) {}
   };
-  console.log(chosenDays);
+
   useEffect(() => {
     chosenDay();
      checkSameDate(startDate, endDate);

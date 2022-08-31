@@ -89,9 +89,9 @@ const ReserveSingleRoom = () => {
             ) : (
               <div>
                 <h3 className="text-5xl font-light text-center mb-2">
-                  ＄
-                  {(totalDays - isWeekend) * roomData.normalDayPrice +
+                  ＄{totalDays==0? roomData.normalDayPrice:(totalDays - isWeekend) * roomData.normalDayPrice +
                     isWeekend * roomData.holidayPrice}
+               
                 </h3>
                 <p className=" text-xs text-center mb-10">
                   共{totalDays + 1}天{totalDays}夜，平日 {totalDays - isWeekend}{' '}

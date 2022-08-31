@@ -63,7 +63,6 @@ const BookRoom = (props) => {
         end: new Date(formatDate(endDate)),
       });
       setIsWeekend(result.length);
-      console.log(alreadyBooked);
       if (alreadyBooked == true) {
         Swal.fire('所選日期已被預訂');
         setStartDate(new Date());
@@ -116,8 +115,7 @@ const BookRoom = (props) => {
     });
   };
   const reserve = () => {
-    let regex = /^1[34578]\d{9}$/;
-    console.log(!regex.test(customer.tel));
+
     if (customer.name == '') {
       Swal.fire('請輸入姓名');
       return;
@@ -128,7 +126,6 @@ const BookRoom = (props) => {
     axios
       .post(`https://pure-harbor-20136.herokuapp.com/reserve/${Id}`, customer)
       .then((res) => {
-        console.log(res);
         setReservePage(false);
         setResult(true);
       })
@@ -148,7 +145,7 @@ const BookRoom = (props) => {
 
     return [year, month, day].join('-');
   };
-  console.log(roomData);
+
   return (
     <div className="absolute z-40 w-full h-screen">
       {reservePage ? (
@@ -258,7 +255,7 @@ const BookRoom = (props) => {
                 {descriptionShort.PrivateBath} 間，
                 {descriptionShort.Footage}平方公尺
               </p>
-              <p>
+              <p className="text-md  text-primary  mb-1">
                 平日（一～四）價格：{normalDayPrice} / 假日（五〜日）價格：
                 {holidayPrice}
               </p>
