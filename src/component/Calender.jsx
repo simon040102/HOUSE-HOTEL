@@ -24,6 +24,8 @@ const Calender = (props) => {
   } = props;
 
   const chosenDay = () => {
+    setChosenDays([]);
+    console.log(startDate, endDate);
     try {
       roomBooked.forEach((item) => {
         let obj = { start: '', end: '' };
@@ -31,9 +33,9 @@ const Calender = (props) => {
         let endDay = new Date(item.date[1]);
         obj.start = subDays(startDay, 1);
         obj.end = addDays(endDay, 0);
-
         setChosenDays((preDays) => [...preDays, obj]);
       });
+    
     } catch (error) {}
   };
 
@@ -59,7 +61,9 @@ const Calender = (props) => {
     if(endDay==null){return}
 
     await roomBooked.forEach((item) => {
+      let newStartDay = new Date(item.date[0]);
       let newEndDay = new Date(item.date[1]);
+      newStartDay = new Date(newStartDay.setDate(newStartDay.getDate() + 1));
       newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
       let date0 = new Date(item.date[0]);
       let date1 = new Date(item.date[1]);
@@ -67,7 +71,7 @@ const Calender = (props) => {
 
       let check1 =new Date(startDay) >= date0 && new Date(startDay) <= newEndDay;
       let check2 = new Date(endDay) >= date0 && new Date(endDay) <= date1;
-      let check3 = date0 >= new Date(startDay) && date0 <= new Date(endDay);
+      let check3 = date0 >= new Date(newStartDay) && date0 <= new Date(endDay);
       let check4 = date1 >= new Date(startDay) && date1 <= new Date(endDay);
 
       if (check == true) {
@@ -108,81 +112,11 @@ const Calender = (props) => {
     setIsWeekend(result.length);
   };
 
- 
-  const handleClick = () => {
-    axios
-      .post(`https://pure-harbor-20136.herokuapp.com/reserve/${Id}`, customer)
-      .then((res) => {
-        chosenDay();
-        alert(res.data.message);
 
-      })
-      .catch((err) => {
-        alert(err.response.data.message);
-      });
-  };
   return (
     <div className="ml-8 ">
       <h3 className=" text-primary mb-2">空房狀態查詢</h3>
-      {/* <div>
-        <div className="flex">
-          <div className="w-32">
-            <p>開始日期：</p>
-          </div>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-          />
-        </div>
-        <div className="flex">
-          <div className="w-32">
-            <p>結束日期：</p>
-          </div>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-          />
-        </div>
-        <input
-          type="text"
-          placeholder="請輸入姓名"
-          onChange={handleChange}
-          name="name"
-          value={customer.name}
-        />
-        <br />
-        <input
-          type="tel"
-          placeholder="請輸入電話號碼"
-          onChange={handleChange}
-          name="tel"
-          value={customer.tel}
-        />
 
-        <p>
-          共{totalDays + 1}天{totalDays}夜，平日 {totalDays - isWeekend}{' '}
-          晚，假日
-          {isWeekend}晚
-        </p>
-        <h3 className="text-4xl">
-          總價：
-          {(totalDays - isWeekend) * roomData.normalDayPrice +
-            isWeekend * roomData.holidayPrice}
-        </h3>
-        <input
-          className="bg-blue-300 w-24 rounded-md mb-4 mt-4 cursor-pointer"
-          type="submit"
-          value=" 送出訂房"
-          onClick={handleClick}
-        />
-      </div> */}
       <div>
         <DatePicker
           minDate={subDays(new Date(), 0)}

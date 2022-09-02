@@ -5,15 +5,19 @@ import axios from 'axios';
 import SwiperEffect from './component/swiper';
 import HomeInfo from './component/HomeInfo';
 import HomeRoom from './component/HomeRoom';
+import IsLoading from './component/isLoading';
 
 
 const Home = () => {
   const [data, setData] = useState([]);
+   const [isLoading, setIsLoading] = useState(false);
+
   const getData = () => {
     axios
       .get(' https://pure-harbor-20136.herokuapp.com/singleroom')
       .then((res) => {
         setData([...res.data.room]);
+         setIsLoading(false);
       });
   };
   const show = () => {
@@ -23,9 +27,11 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
+    setIsLoading(true);
   }, []);
   return (
-    <>
+    <div className=" ">
+      {isLoading && <IsLoading />}
       <SwiperEffect />
       <div className="flex container m-auto">
         <HomeInfo />
@@ -35,7 +41,7 @@ const Home = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

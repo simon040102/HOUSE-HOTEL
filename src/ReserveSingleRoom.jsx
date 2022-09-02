@@ -8,8 +8,13 @@ import RoomPhoto from './component/RoomPhoto';
 import './CSS/room.css';
 import backHome from './images/surface1@2x.png';
 import BookRoom from './component/BookRoom';
+import IsLoading from './component/isLoading';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const ReserveSingleRoom = () => {
+    const MySwal = withReactContent(Swal);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { Id } = useParams();
   const [roomData, setRoomData] = useState([]);
@@ -21,23 +26,40 @@ const ReserveSingleRoom = () => {
       .then((res) => {
         setRoomData(res.data.room);
         setRoomBooked(res.data.booking);
+        setIsLoading(false);
       })
       .catch((err) => {
         alert('網址不存在');
         navigate('/');
+        setIsLoading(false);
       });
   };
   useEffect(() => {
     getData();
+    setIsLoading(true);
   }, []);
   const [totalDays, setTotalDays] = useState(0);
   const [isWeekend, setIsWeekend] = useState(0);
   const [booking, setBooking] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [chosenDays, setChosenDays] = useState([]);
   const bookRoom = () => {
-    setBooking(true);
+    // console.log(startDate, endDate);
+  if(startDate==undefined&& endDate==undefined){
+     Swal.fire('請選擇日期');
+    return
+  };
+    if (endDate == null) {
+      let newEndDay = new Date(startDate);
+      newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() + 1));
+      setEndDate(newEndDay);
+       setBooking(true);
+      return
+    }else if(totalDays!==0){
+      setBooking(true);
+    }
+    
   };
   const [customer, setCustomer] = useState({
     name: '',
@@ -47,6 +69,8 @@ const ReserveSingleRoom = () => {
   });
   return (
     <div className="relative">
+      {isLoading && <IsLoading />}
+
       {booking && (
         <BookRoom
           Id={Id}
@@ -89,9 +113,15 @@ const ReserveSingleRoom = () => {
             ) : (
               <div>
                 <h3 className="text-5xl font-light text-center mb-2">
-                  ＄{totalDays==0? roomData.normalDayPrice:(totalDays - isWeekend) * roomData.normalDayPrice +
-                    isWeekend * roomData.holidayPrice}
-               
+                  ＄
+                  {totalDays == 0
+                    ? roomData.normalDayPrice
+                    : (totalDays - isWeekend) * roomData.normalDayPrice +
+                      isWeekend * roomData.holidayPrice}
+                  <span className="text-2xl">
+                    {' '}
+                    / {totalDays == 0 ? 1 : totalDays} 晚
+                  </span>
                 </h3>
                 <p className=" text-xs text-center mb-10">
                   共{totalDays + 1}天{totalDays}夜，平日 {totalDays - isWeekend}{' '}
@@ -134,5 +164,3 @@ const ReserveSingleRoom = () => {
   );
 };
 export default ReserveSingleRoom;
-
-         

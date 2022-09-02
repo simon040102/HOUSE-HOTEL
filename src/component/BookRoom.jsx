@@ -8,12 +8,15 @@ import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
 import ReservePage from './ReservePage';
 import Amenities from './Amenities';
-import book1 from '../images/book1.png'
-import book2 from '../images/book2.png'
-import book3 from '../images/book3.png'
-import bookarr from '../images/bookarr.png'
+import book1 from '../images/book1.png';
+import book2 from '../images/book2.png';
+import book3 from '../images/book3.png';
+import bookarr from '../images/bookarr.png';
+import IsLoading from './isLoading';
 
 const BookRoom = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const MySwal = withReactContent(Swal);
   const {
     Id,
@@ -33,22 +36,21 @@ const BookRoom = (props) => {
     SetAlreadyBooked,
     alreadyBooked,
     roomBooked,
+    setChosenDays,
   } = props;
-   const {
-     normalDayPrice,
-     holidayPrice,
-     descriptionShort,
-     amenities,
-   } = props.roomData;
+  const { normalDayPrice, holidayPrice, descriptionShort, amenities } =
+    props.roomData;
   const [reservePage, setReservePage] = useState(true);
   const [result, setResult] = useState(false);
+  const [checkIn,setCheckIn]=useState([])
+  const [checkOut, setCheckOut] = useState([]);
   const closeView = () => {
     setBooking(false);
   };
   const dateChange = async () => {
     try {
-        let newEndDay = new Date(endDate);
-        newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
+      let newEndDay = new Date(endDate);
+      newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
       setCustomer((preState) => {
         return {
           ...preState,
@@ -70,10 +72,40 @@ const BookRoom = (props) => {
       }
     } catch (error) {}
   };
-  useEffect(() => {
-    dateChange();
-    checkSameDate(startDate, endDate);
-  }, [startDate, endDate, alreadyBooked]);
+   useEffect(() => {
+     chosenCheckInDay();
+     chosenCheckoutDay();
+     dateChange();
+     checkSameDate(startDate, endDate);
+   }, [startDate, endDate, alreadyBooked]);
+const chosenCheckInDay = () => {
+  setCheckIn([]);
+  try {
+    roomBooked.forEach((item) => {
+      let obj = { start: '', end: '' };
+      let startDay = new Date(item.date[0]);
+      let endDay = new Date(item.date[1]);
+      obj.start = subDays(startDay, 1);
+      obj.end = addDays(endDay, 0);
+      setCheckIn((preDays) => [...preDays, obj]);
+    });
+  } catch (error) {}
+};
+
+const chosenCheckoutDay = () => {
+  setCheckOut([]);
+  try {
+    roomBooked.forEach((item) => {
+      let obj = { start: '', end: '' };
+      let startDay = new Date(item.date[0]);
+      let endDay = new Date(item.date[1]);
+      obj.start = subDays(startDay, 0);
+      obj.end = addDays(endDay, 1);
+      setCheckOut((preDays) => [...preDays, obj]);
+    });
+  } catch (error) {}
+};
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCustomer((preState) => {
@@ -90,17 +122,18 @@ const BookRoom = (props) => {
     }
 
     await roomBooked.forEach((item) => {
+      let newStartDay = new Date(item.date[0]);
       let newEndDay = new Date(item.date[1]);
+      newStartDay = new Date(newStartDay.setDate(newStartDay.getDate() + 1));
       newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
       let date0 = new Date(item.date[0]);
       let date1 = new Date(item.date[1]);
 
       let check1 =
         new Date(startDay) >= date0 && new Date(startDay) <= newEndDay;
-      let check2 = new Date(endDay) >= date0 && new Date(endDay) <= date1;
-      let check3 = date0 >= new Date(startDay) && date0 <= new Date(endDay);
+      let check2 = (new Date(endDay) >= newStartDay) && (new Date(endDay) <= date1);
+      let check3 = date0 >= new Date(newStartDay) && date0 <= new Date(endDay);
       let check4 = date1 >= new Date(startDay) && date1 <= new Date(endDay);
-
       if (check == true) {
         return;
       } else if (check1 || check2 || check3 || check4) {
@@ -115,7 +148,6 @@ const BookRoom = (props) => {
     });
   };
   const reserve = () => {
-
     if (customer.name == '') {
       Swal.fire('請輸入姓名');
       return;
@@ -123,15 +155,18 @@ const BookRoom = (props) => {
       Swal.fire('請輸入電話號碼');
       return;
     }
+    setIsLoading(true);
     axios
       .post(`https://pure-harbor-20136.herokuapp.com/reserve/${Id}`, customer)
       .then((res) => {
         setReservePage(false);
         setResult(true);
+        setIsLoading(false);
       })
       .catch((err) => {
         setResult(false);
         setReservePage(false);
+        setIsLoading(false);
       });
   };
   const formatDate = (date) => {
@@ -148,6 +183,7 @@ const BookRoom = (props) => {
 
   return (
     <div className="absolute z-40 w-full h-screen">
+      {isLoading && <IsLoading />}
       {reservePage ? (
         <div className="  w-10/12 m-auto mt-20 h-6/6  z-50 border border-primary flex">
           <div className=" w-5/12 bg-primary">
@@ -172,37 +208,36 @@ const BookRoom = (props) => {
               <br />
               <p className=" text-white">入住日期</p>
               <DatePicker
-                className=" w-full mb-4 h-8 indent-4"
+                className=" w-full mb-4 h-8 indent-4 bookingNow"
                 selected={startDate}
                 onChange={(date) => {
                   setStartDate(date);
                   setEndDate(date);
                   dateChange();
+                  // chosenEndDay();
                 }}
                 selectsStart
                 startDate={startDate}
-                endDate={endDate}
-                excludeDateIntervals={chosenDays}
+                excludeDateIntervals={checkIn}
                 dateFormat="yyyy-MM-dd"
-                monthsShown={2}
+                monthsShown={1}
                 minDate={subDays(new Date(), 0)}
               />
               <br />
               <p className=" text-white">退房日期</p>
               <DatePicker
-                className=" w-full  h-8 indent-4"
+                className=" w-full  h-8 indent-4 bookingNow"
                 selected={endDate}
                 onChange={(date) => {
                   setEndDate(date);
                   dateChange();
                 }}
                 selectsEnd
-                startDate={startDate}
                 endDate={endDate}
                 minDate={subDays(new Date(), 0)}
-                excludeDateIntervals={chosenDays}
+                excludeDateIntervals={checkOut}
                 dateFormat="yyyy-MM-dd"
-                monthsShown={2}
+                monthsShown={1}
               />
               {totalDays > 0 && (
                 <>
