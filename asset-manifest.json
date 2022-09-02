@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/HOUSE-HOTEL/static/css/main.910e3fd5.css",
-    "main.js": "/HOUSE-HOTEL/static/js/main.f79d9b6f.js",
+    "main.css": "/HOUSE-HOTEL/static/css/main.bdadc4c0.css",
+    "main.js": "/HOUSE-HOTEL/static/js/main.fd78fa86.js",
     "static/js/787.28cb0dcd.chunk.js": "/HOUSE-HOTEL/static/js/787.28cb0dcd.chunk.js",
     "static/media/photo-1551516594-56cb78394645.png": "/HOUSE-HOTEL/static/media/photo-1551516594-56cb78394645.2d396ebb42a62d824a9c.png",
     "static/media/photo-1507149833265-60c372daea22.png": "/HOUSE-HOTEL/static/media/photo-1507149833265-60c372daea22.0efa79b6bf45bc795d63.png",
@@ -16,6 +16,7 @@
     "static/media/eat.svg": "/HOUSE-HOTEL/static/media/eat.66db71506a36db7079e94fa47ce1a2cb.svg",
     "static/media/roomservice.svg": "/HOUSE-HOTEL/static/media/roomservice.54d3597946dead30c0d0a1fdf560deba.svg",
     "static/media/sofa.svg": "/HOUSE-HOTEL/static/media/sofa.e712e2b0548dca390f6c11e738d1c58e.svg",
+    "static/media/isLoading.svg": "/HOUSE-HOTEL/static/media/isLoading.f99df404a0559bd4f449eb1bc9961f40.svg",
     "static/media/view.svg": "/HOUSE-HOTEL/static/media/view.74776dea09fd3b31f18f8e1c9b7aeaa2.svg",
     "static/media/game.svg": "/HOUSE-HOTEL/static/media/game.d90e3a5fb45486e46d455eb9ffee8dd3.svg",
     "static/media/nosmoking.svg": "/HOUSE-HOTEL/static/media/nosmoking.c50e0a0799054423eea529474928057d.svg",
@@ -27,12 +28,12 @@
     "static/media/close.svg": "/HOUSE-HOTEL/static/media/close.b63ec7f270f10614af9117e812ea1552.svg",
     "static/media/no.svg": "/HOUSE-HOTEL/static/media/no.637da60078b2955ab83ac86216dd5af0.svg",
     "static/media/yes.svg": "/HOUSE-HOTEL/static/media/yes.07536bc203e4a99996251cbebc868253.svg",
-    "main.910e3fd5.css.map": "/HOUSE-HOTEL/static/css/main.910e3fd5.css.map",
-    "main.f79d9b6f.js.map": "/HOUSE-HOTEL/static/js/main.f79d9b6f.js.map",
+    "main.bdadc4c0.css.map": "/HOUSE-HOTEL/static/css/main.bdadc4c0.css.map",
+    "main.fd78fa86.js.map": "/HOUSE-HOTEL/static/js/main.fd78fa86.js.map",
     "787.28cb0dcd.chunk.js.map": "/HOUSE-HOTEL/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.910e3fd5.css",
-    "static/js/main.f79d9b6f.js"
+    "static/css/main.bdadc4c0.css",
+    "static/js/main.fd78fa86.js"
   ]
 }
