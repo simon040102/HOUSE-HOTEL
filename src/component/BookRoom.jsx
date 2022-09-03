@@ -48,6 +48,7 @@ const BookRoom = (props) => {
     setBooking(false);
   };
   const dateChange = async () => {
+   
     try {
       let newEndDay = new Date(endDate);
       newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
@@ -65,11 +66,13 @@ const BookRoom = (props) => {
         end: new Date(formatDate(endDate)),
       });
       setIsWeekend(result.length);
-      if (alreadyBooked == true) {
-        Swal.fire('所選日期已被預訂');
-        setStartDate(new Date());
-        setEndDate(new Date());
-      }
+      console.log(alreadyBooked);
+       if (alreadyBooked == true) {
+         Swal.fire('所選日期已被預訂');
+         setStartDate(new Date());
+         setEndDate(new Date());
+         return;
+       }
     } catch (error) {}
   };
    useEffect(() => {
@@ -129,11 +132,11 @@ const chosenCheckoutDay = () => {
       let date0 = new Date(item.date[0]);
       let date1 = new Date(item.date[1]);
 
-      let check1 =
-        new Date(startDay) >= date0 && new Date(startDay) <= newEndDay;
+      let check1 =new Date(startDay) >= date0 &&new Date(startDay) <= (newEndDay);
       let check2 = (new Date(endDay) >= newStartDay) && (new Date(endDay) <= date1);
       let check3 = date0 >= new Date(newStartDay) && date0 <= new Date(endDay);
-      let check4 = date1 >= new Date(startDay) && date1 <= new Date(endDay);
+      let check4 =date1 >= new Date(startDay) && (newStartDay <= new Date(endDay));
+      console.log(check1 , check2 , check3 , check4)
       if (check == true) {
         return;
       } else if (check1 || check2 || check3 || check4) {
@@ -155,6 +158,12 @@ const chosenCheckoutDay = () => {
       Swal.fire('請輸入電話號碼');
       return;
     }
+    if (alreadyBooked == true) {
+         Swal.fire('所選日期已被預訂');
+         setStartDate(new Date());
+         setEndDate(new Date());
+         return;
+       }
     setIsLoading(true);
     axios
       .post(`https://pure-harbor-20136.herokuapp.com/reserve/${Id}`, customer)

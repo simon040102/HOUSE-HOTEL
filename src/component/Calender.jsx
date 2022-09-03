@@ -25,7 +25,6 @@ const Calender = (props) => {
 
   const chosenDay = () => {
     setChosenDays([]);
-    console.log(startDate, endDate);
     try {
       roomBooked.forEach((item) => {
         let obj = { start: '', end: '' };
@@ -67,12 +66,10 @@ const Calender = (props) => {
       newEndDay = new Date(newEndDay.setDate(newEndDay.getDate() - 1));
       let date0 = new Date(item.date[0]);
       let date1 = new Date(item.date[1]);
-      
-
-      let check1 =new Date(startDay) >= date0 && new Date(startDay) <= newEndDay;
-      let check2 = new Date(endDay) >= date0 && new Date(endDay) <= date1;
+      let check1 =new Date(startDay) >= date0 &&new Date(startDay) <= (newEndDay);
+      let check2 = (new Date(endDay) >= newStartDay) && (new Date(endDay) <= date1);
       let check3 = date0 >= new Date(newStartDay) && date0 <= new Date(endDay);
-      let check4 = date1 >= new Date(startDay) && date1 <= new Date(endDay);
+      let check4 =date1 >= new Date(startDay) && (newStartDay <= new Date(endDay));
 
       if (check == true) {
         return;
